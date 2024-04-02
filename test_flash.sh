@@ -53,7 +53,6 @@ for part in aop xbl xbl_config devcfg boot system; do
   echo "${part}_before_flash_checksum"
 done
 
-
 boot_correct_hash="f0de74e139b8b99224738d4e72a5b1831758f20b09ff6bb28f3aaaae1c4c1ebe"
 abl_correct_hash="eeb89a74c968a5a2ffce96f23158b72e03e2814adf72ef59d1200ba8ea5d2f39"
 xbl_correct_hash="bcef195b00a1ab685da601f4072722569773ab161e91c8753ad99ca4217a28f5"
