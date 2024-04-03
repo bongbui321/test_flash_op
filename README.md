@@ -1,8 +1,8 @@
 # TEST PLAN FOR FLASH TESTING
 
 - [x] Correct checksum for every flashed partition
-  - [x] Erase the flashing partition first + get checksum
-  - [x] Flash the partition and check with checksum
+  - [x] Erase the flashing partition first + get hash + check hash
+  - [x] Flash the partition + get hash + check hash
 - [x] Website stops when the device disconnects (no frozen tab)
   - [x] Unplug in the middle of flashing partitions
   - [x] Unplug in the middle of changing slots
