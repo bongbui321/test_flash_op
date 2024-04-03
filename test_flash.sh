@@ -45,7 +45,9 @@ dump() {
   $EDL r $1 $2 --memory=ufs
 }
 
+
 if [ "$1" == "after" ]; then
+  mkdir after_flash &> /dev/null
   for part in system xbl xbl_config devcfg boot aop abl; do
     dump ${part}_$CURRENT_SLOT after_flash/${part}_test.img
   done
@@ -56,6 +58,7 @@ fi
 
 
 if [ "$1" == "before" ]; then
+  mkdir before_flash &> /dev/null
   for part in system xbl xbl_config devcfg boot aop abl; do
     partition=${part}_$OTHER_SLOT
     $EDL e $partition

@@ -1,5 +1,4 @@
 edl
 edl_config.json
 
-after_flash/*
-before_flash/*
+*.img
