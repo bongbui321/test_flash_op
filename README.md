@@ -49,7 +49,7 @@
 ### 3. Run:
 ```bash
 # print out current gpt header table
-# The table should be similar to what you have before since it was recovered by the backup which was still
+# The table should indicate the correct activeslot with correct gpt header since it was recovered by the backup which was still
 # holding gpt header before the flash, and not updated until booted up successfully
 ./test_flash table
 ```
