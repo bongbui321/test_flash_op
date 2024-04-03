@@ -1,19 +1,20 @@
 # TEST PLAN FOR FLASH TESTING
 
-- [x] Correct checksum for every flashed partition
+- ### Correct checksum for every flashed partition
   - [x] Erase the flashing partition first + get hash + check hash
   - [x] Flash the partition + get hash + check hash
-- [x] Website stops when the device disconnects (no frozen tab)
+- ### Website stops when the device disconnects (no frozen tab)
   - [x] Unplug in the middle of flashing partitions
   - [x] Unplug in the middle of changing slots
   - [x] Unplug fast in the beginning when was handshaking with Sahara
-- [x] Check gpt header correctness after changing slot (similar to that of fastboot)
+- ### Check gpt header correctness after changing slot (similar to that of fastboot)
   - [x] edl gpt dump `./edl printgpt --memory=ufs`
-- [x] Recover gpt header after a crash during changing active slot
+  - [x] Use fastboot to change slot (2 times) and use the above command to dump, should be the same
+- ### Recover gpt header after a crash during changing active slot
   - [x] Instruction to emulate below
-- [x] Flash to the correct slot if it fails the previous time
+- ### Flash to the correct slot if it fails the previous time
   - [x] similar testing method as above
-- [x] No corrupted backup gpt header partition even if the users plug in the device immediately after a fail flash
+- ### No corrupted backup gpt header partition even if the users plug in the device immediately after a fail flash
   - [x] The `xbl_$currentslot` is deleted before flashing so it is impossible to do that. Checked by unplug during changing slot and try to turn on the device -> no turn on -> no backup gpt header update -> no corrupted backup gpt header.
 
 
