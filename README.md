@@ -12,12 +12,13 @@ Optional
 - [ ] No corrupted gpt header partition even if the users plug in the device immediately after a fail flash
 
 ## Usage
-Before:
+### 1 . Run before flashing:
 ```bash
 # Run this command before flashing to check that the flashing slot partitions don't have the images
 ./test_flash before
 ```
-After:
+### 2. Use [bongbui321.github.io/flash](bongbui321.github.io/flash) to flash the device
+### 3. Run after flashing:
 ```bash
 # Run this command after flashing to check that the flashing slot partitions are the same as the images
 ./test_flash after
