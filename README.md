@@ -14,7 +14,7 @@
 - [x] Flash to the correct slot if it fails the previous time
   - [x] similar testing method as above
 - [x] No corrupted backup gpt header partition even if the users plug in the device immediately after a fail flash
-  - [x] The `xbl_$currentslot` is deleted before flashing so it is impossible to do that. Checked by unplug during changing slot and try to turn on the device
+  - [x] The `xbl_$currentslot` is deleted before flashing so it is impossible to do that. Checked by unplug during changing slot and try to turn on the device -> no turn on -> no backup gpt header update -> no corrupted backup gpt header.
 - [x] Setactiveslot with partitions' metadata similar to those when use fastboot (implementation is same as fastboot)
 
 
