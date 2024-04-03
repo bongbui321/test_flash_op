@@ -18,7 +18,7 @@ Optional
 ./test_flash before
 ```
 ### 2. Use [bongbui321.github.io/flash](bongbui321.github.io/flash) to flash the device
-### 3. Turn on and follow the instruction toreset your device
+### 3. Turn on and follow the instruction to reset your device
   - This is for the backup gpt header to be updated to the correct primary header
 ### 4. Run after flashing:
 ```bash
