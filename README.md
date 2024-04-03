@@ -18,7 +18,9 @@ Optional
 ./test_flash before
 ```
 ### 2. Use [bongbui321.github.io/flash](bongbui321.github.io/flash) to flash the device
-### 3. Run after flashing:
+### 3. Turn on and follow the instruction toreset your device
+  - This is for the backup gpt header to be updated to the correct primary header
+### 4. Run after flashing:
 ```bash
 # Run this command after flashing to check that the flashing slot partitions are the same as the images
 ./test_flash after
