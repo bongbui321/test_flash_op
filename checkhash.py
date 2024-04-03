@@ -24,18 +24,18 @@ def load_manifest(url):
   return json.loads(r.content.decode())
 
 if __name__ == "__main__":
-  expected = sys.argv[1]
+  check = sys.argv[1]
   all_good = True
   update = load_manifest(MASTER_MANIFEST)
-  read_dir = "after_flash" if expected == "after" else "before_flash"
+  read_dir = "after_flash" if check == "after" else "before_flash"
 
   for partition in update:
     ret = read_and_check_hash(f"{read_dir}/{partition['name']}_test.img", partition['size'], partition['hash_raw'])
-    if expected == "after":
+    if check == "after":
       if not ret:
         print(f"Unmatched: {partition['name']}")
         all_good = False
-    elif expected == "before":
+    elif check == "before":
       if ret:
         print(f"The hash in partitions {partition['name']} is the same as the expected hash, make sure to erase the partition prior for testing purposes")
         all_good = False
@@ -43,7 +43,7 @@ if __name__ == "__main__":
       print("Either \"same\" or \"not_same\" as argument")
 
   if all_good:
-    if expected == "after":
+    if check == "after":
       print(f"All flashed partitions are correct")
-    elif expected == "before":
+    elif check == "before":
       print("Flashing slots doesn't have OP images. Good to flash!")

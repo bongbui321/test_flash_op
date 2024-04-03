@@ -47,7 +47,9 @@ dump() {
 
 
 if [ "$1" == "after" ]; then
-  mkdir after_flash &> /dev/null
+  if [ ! -d "after_flash" ]; then
+    mkdir after_flash &> /dev/null
+  fi
   for part in system xbl xbl_config devcfg boot aop abl; do
     dump ${part}_$CURRENT_SLOT after_flash/${part}_test.img
   done
@@ -58,7 +60,9 @@ fi
 
 
 if [ "$1" == "before" ]; then
-  mkdir before_flash &> /dev/null
+  if [ ! -d "before_flash" ]; then
+    mkdir before_flash &> /dev/null
+  fi
   for part in system xbl xbl_config devcfg boot aop abl; do
     partition=${part}_$OTHER_SLOT
     $EDL e $partition
@@ -68,3 +72,4 @@ if [ "$1" == "before" ]; then
   echo "Checking other slot before flashing..."
   python3 checkhash.py before
 fi
+
