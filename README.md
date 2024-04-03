@@ -10,7 +10,7 @@
 - [x] Check gpt header correctness after changing slot (similar to that of fastboot)
   - [x] edl gpt dump `./edl printgpt --memory=ufs`
 - [x] Recover gpt header after a crash during changing active slot
-  - [x] Use `./edl setactiveslot $other_slot` -> this would emulate a situation where the primary gpt header is different from backup gpt header, then use the flash website. It would recover the correct gpt header from backup.
+  - [x] Instruction to emulate below
 - [x] Flash to the correct slot if it fails the previous time
   - [x] similar testing method as above
 - [x] No corrupted backup gpt header partition even if the users plug in the device immediately after a fail flash
@@ -33,4 +33,23 @@
 # Run this command after flashing to check that the flashing slot partitions are the same as the images
 # This reads the flashed partitions and compute the hash + check with the hash of the images
 ./test_flash after
+```
+
+## Corrupt gpt header:
+### 1. Run below command to corrupt primary gpt header or run the web and unplug during changing slot:
+```bash
+# This command change the gpt header to the other slot: this emulate the situation
+# where the device disconnects during changing slot without finishing the command
+# This would also print out the gpt table, the active partitions should be opposite to your actual current active
+./test_flash corrupt
+```
+
+### 2. Uses the [web](bongbui321/github.io/flash) to flash
+
+### 3. Run:
+```bash
+# print out current gpt header table
+# The table should be similar to what you have before since it was recovered by the backup which was still
+# holding gpt header before the flash, and not updated until booted up successfully
+./test_flash table
 ```

@@ -73,3 +73,12 @@ if [ "$1" == "before" ]; then
   python3 checkhash.py before
 fi
 
+if [ "$1" == "corrupt" ]; then
+  $EDL setactiveslot $OTHER_SLOT
+  $EDL printgpt --memory=ufs
+fi
+
+if [ "$1" == "table" ]; then
+  $EDL printgpt --memory=ufs
+fi
+
