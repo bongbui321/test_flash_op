@@ -12,6 +12,9 @@
   - [x] Use fastboot to change slot (2 times) and use the above command to dump, should be the same
 - ### Recover gpt header after a crash during changing active slot
   - [x] Instruction to emulate below
+  - [ ] Recover from stops before updating the header
+  - [ ] Recover from stops after updating the header
+  - [ ] Recover from stops after updating everything
 - ### Flash to the correct slot if it fails the previous time
   - [x] similar testing method as above
 - ### No corrupted backup gpt header partition even if the users plug in the device immediately after a fail flash
