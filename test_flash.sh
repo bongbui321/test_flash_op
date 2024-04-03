@@ -42,10 +42,7 @@ fi
 echo "Current active slot: $CURRENT_SLOT"
 
 dump() {
-  echo "Dumping $1..."
-  {
-    $EDL r $1 $2 --memory=ufs
-  } &> /dev/null
+  $EDL r $1 $2 --memory=ufs
 }
 
 if [ "$1" == "after" ]; then
@@ -63,8 +60,8 @@ if [ "$1" == "before" ]; then
     partition=${part}_$OTHER_SLOT
     $EDL e $partition
     dump $partition before_flash/${part}_test.img
-    echo "${part}_before_flash_checksum"
   done
+
   echo "Checking other slot before flashing..."
   python3 checkhash.py before
 fi

@@ -46,4 +46,4 @@ if __name__ == "__main__":
     if expected == "after":
       print(f"All flashed partitions are correct")
     elif expected == "before":
-      print("The flashing partitions are different from flashing images, good to flash")
+      print("Flashing slots doesn't have OP images. Good to flash!")
