@@ -27,7 +27,7 @@
 ```
 ### 2. Use [bongbui321.github.io/flash](bongbui321.github.io/flash) to flash the device
 ### 3. Turn on and follow the instruction to reset your device
-  - This is for the backup gpt header to be updated to the correct primary header. We check the active slot using the backup gpt header since it is more reliable than the primary gpt header.
+  - This is for the backup gpt header to be updated to the correct primary header. We check the active slot using the backup gpt header since it is more reliable than the primary gpt header, and based on our implementation, backup gpt header would always in non-corrupted state
 ### 4. Run after flashing:
 ```bash
 # Run this command after flashing to check that the flashing slot partitions are the same as the images
