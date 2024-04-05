@@ -11,7 +11,6 @@
   - [x] edl gpt dump `./edl printgpt --memory=ufs`
   - [x] Use fastboot to change slot (2 times) and use the above command to dump, should be the same
 - ### Recover gpt header after a crash during changing active slot
-  - [x] Instruction to emulate below
   - [x] Recover from stops before updating the header
   - [x] Recover from stops after updating the header
   - [x] Recover from stops after updating everything but not booted up yet (intended behaviour is backup gpt header updated when the device booted up successfully). This can be recreated using instructions below in `Corrupt gpt header` section.
