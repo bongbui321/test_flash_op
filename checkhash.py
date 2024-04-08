@@ -16,7 +16,8 @@ def read_and_check_hash(filename, size, hash):
         chunk = f.read(rlen)
         sha256.update(chunk)
         bytes_to_write -= rlen
-    return sha256.hexdigest().lower() == hash.lower()
+    partition_hash = sha256.hexdigest().lower()
+    return partition_hash  == hash.lower(), partition_hash
 
 def load_manifest(url):
   r = requests.get(url)
@@ -25,25 +26,22 @@ def load_manifest(url):
 
 if __name__ == "__main__":
   check = sys.argv[1]
-  all_good = True
+  unmatched_partitions = {}
   update = load_manifest(MASTER_MANIFEST)
   read_dir = "after_flash" if check == "after" else "before_flash"
 
   for partition in update:
-    ret = read_and_check_hash(f"{read_dir}/{partition['name']}_test.img", partition['size'], partition['hash_raw'])
-    if check == "after":
-      if not ret:
-        print(f"Unmatched: {partition['name']}")
-        all_good = False
-    elif check == "before":
-      if ret:
-        print(f"The hash in partitions {partition['name']} is the same as the expected hash, make sure to erase the partition prior for testing purposes")
-        all_good = False
-    else:
-      print("Either \"same\" or \"not_same\" as argument")
+    ret, partition_hash = read_and_check_hash(f"{read_dir}/{partition['name']}_test.img", partition['size'], partition['hash_raw'])
+    if (check == "after" and not ret) or (check == "before" and ret):
+      unmatched_partitions[partition['name']] = {"incorrect": partition_hash, "correct": partition["hash_raw"]}
 
-  if all_good:
-    if check == "after":
-      print(f"All flashed partitions are correct")
-    elif check == "before":
-      print("Flashing slots doesn't have OP images. Good to flash!")
+  if len(unmatched_partitions) == 0:
+    print("All good!")
+  else:
+    for k, v in unmatched_partitions.items():
+      if check == "after":
+        print(f"Partition: {k}")
+        print(f"Partition hash: {v['incorrect']}")
+        print(f"Expected hash: {v['correct']}\n")
+      elif check == "before":
+        print(f"Partition {k} currently having correct image, needed to be erased first")
